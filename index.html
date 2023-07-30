@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digitil clock</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            background-color: rgb(170, 210, 210);
+        }
+
+        .clock {
+            border: 2px solid black;
+            border-radius: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 200px;
+            width: 650px;
+            box-shadow: 0px 0px 50px blue;
+
+        }
+
+        .time {
+            display: flex;
+        }
+
+        .cl {
+            font-size: 64px;
+        }
+
+        .date {
+            font-size: 44px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="clock">
+            <div class="time">
+                <div class="cl" id="hour"></div>
+                <div class="cl" id="minute"></div>
+                <div class="cl" id="second"></div>
+            </div>
+            <div class="cl date" id="date"></div>
+        </div>
+
+
+    </div>
+    </div>
+
+    <script>
+
+
+        setInterval(digitlClock, 100);
+        // Array of day names, starting from Sunday
+        let dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+
+        // Get the day as a string (e.g., "Sunday", "Monday", etc.)
+
+        function digitlClock() {
+            let d = new Date();
+
+            let hour = d.getHours();
+            let minute = d.getMinutes();
+            let second = d.getSeconds();
+
+            let day = d.getDay();
+            let dayString = dayNames[day];
+
+            let date = d.getDate();
+            let month = d.getMonth();
+
+            if (hour < 10) {
+                hour = "0" + hour;
+            }
+            if (minute < 10) {
+                minute = "0" + minute;
+            }
+            if (second < 10) {
+                second = "0" + second;
+            }
+            if (date < 10) {
+                date = "0" + date;
+            }
+            if (month < 10) {
+                month = "0" + month;
+            }
+            document.getElementById('hour').innerHTML = hour + "&nbsp;:&nbsp;";
+            document.getElementById('minute').innerHTML = minute + "&nbsp;:&nbsp;";
+            document.getElementById('second').innerHTML = second;
+            document.getElementById('date').innerHTML = dayString + "&nbsp;&nbsp;" + date + "&nbsp;-&nbsp;" + month + "&nbsp;-&nbsp;" + d.getFullYear();
+        }
+    </script>
+</body>
+
+</html>
